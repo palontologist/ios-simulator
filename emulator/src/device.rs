@@ -26,13 +26,13 @@ pub struct Device {
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
 pub enum DeviceState {
     /// Device created but not booted
-    Shut Down,
+    ShutDown,
     /// Device is booting
     Booting,
     /// Device is running
     Running,
     /// Device is shutting down
-    Shutting Down,
+    ShuttingDown,
     /// Device encountered an error
     Error,
 }
@@ -40,10 +40,10 @@ pub enum DeviceState {
 impl std::fmt::Display for DeviceState {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            DeviceState::Shut Down => write!(f, "Shut Down"),
+            DeviceState::ShutDown => write!(f, "Shut Down"),
             DeviceState::Booting => write!(f, "Booting"),
             DeviceState::Running => write!(f, "Running"),
-            DeviceState::Shutting Down => write!(f, "Shutting Down"),
+            DeviceState::ShuttingDown => write!(f, "Shutting Down"),
             DeviceState::Error => write!(f, "Error"),
         }
     }
@@ -95,7 +95,7 @@ impl Device {
             id,
             name,
             ios_version: ios_version.as_str().to_string(),
-            state: DeviceState::Shut Down,
+            state: DeviceState::ShutDown,
             properties: DeviceProperties::default(),
             storage_path,
         }
@@ -118,16 +118,16 @@ impl Device {
 
     /// Shutdown the device
     pub async fn shutdown(&mut self) -> Result<()> {
-        if self.state == DeviceState::Shut Down {
+        if self.state == DeviceState::ShutDown {
             return Ok(());
         }
 
-        self.state = DeviceState::Shutting Down;
+        self.state = DeviceState::ShuttingDown;
         
         // Cleanup resources
         tokio::time::sleep(tokio::time::Duration::from_millis(100)).await;
 
-        self.state = DeviceState::Shut Down;
+        self.state = DeviceState::ShutDown;
         Ok(())
     }
 
@@ -194,7 +194,8 @@ impl Device {
                 .into_iter()
                 .filter_map(|e| e.ok())
             {
-                let relative = entry.path().strip_prefix(app_path)?;
+                let relative = entry.path().strip_prefix(app_path)
+                    .map_err(|e| Error::Device(format!("Failed to strip prefix: {}", e)))?;
                 let target = app_dir.join(relative);
                 
                 if entry.path().is_dir() {
@@ -226,7 +227,7 @@ mod tests {
 
         assert_eq!(device.id, "test-device");
         assert_eq!(device.name, "Test Device");
-        assert_eq!(device.state, DeviceState::Shut Down);
+        assert_eq!(device.state, DeviceState::ShutDown);
     }
 
     #[tokio::test]
@@ -243,6 +244,6 @@ mod tests {
         assert_eq!(device.state, DeviceState::Running);
 
         device.shutdown().await.unwrap();
-        assert_eq!(device.state, DeviceState::Shut Down);
+        assert_eq!(device.state, DeviceState::ShutDown);
     }
 }
