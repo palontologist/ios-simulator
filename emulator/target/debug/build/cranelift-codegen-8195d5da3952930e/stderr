@@ -1,0 +1,18 @@
+Writing generated file: /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/settings.rs
+Writing generated file: /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/types.rs
+Writing generated file: /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/opcodes.rs
+Writing generated file: /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/clif_opt.isle
+Writing generated file: /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/clif_lower.isle
+Writing generated file: /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/inst_builder.rs
+Writing generated file: /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/settings-x86.rs
+Rebuilding /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_opt.rs
+Writing ISLE-generated Rust code to /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_opt.rs
+Rebuilding /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_x64.rs
+Writing ISLE-generated Rust code to /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_x64.rs
+Rebuilding /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_aarch64.rs
+Writing ISLE-generated Rust code to /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_aarch64.rs
+Rebuilding /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_s390x.rs
+Writing ISLE-generated Rust code to /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_s390x.rs
+Rebuilding /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_riscv64.rs
+Writing ISLE-generated Rust code to /tmp/workspace/palontologist/ios-simulator/emulator/target/debug/build/cranelift-codegen-8195d5da3952930e/out/isle_riscv64.rs
+fatal: not a git repository (or any of the parent directories): .git
