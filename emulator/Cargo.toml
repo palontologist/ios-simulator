@@ -1,0 +1,69 @@
+[package]
+name = "ioss-emulator"
+version = "0.1.0"
+edition = "2021"
+authors = ["iOS Simulator Project Contributors"]
+license = "MIT"
+description = "Open-source iOS simulator for NixOS without proprietary Apple frameworks"
+
+[dependencies]
+# Core runtime
+tokio = { version = "1.35", features = ["full"] }
+async-trait = "0.1"
+
+# Serialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+toml = "0.8"
+
+# CLI
+clap = { version = "4.4", features = ["derive"] }
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Logging
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt"] }
+
+# File system
+walkdir = "2.4"
+tempfile = "3.8"
+
+# Networking
+hyper = { version = "0.14", features = ["full"] }
+http = "0.2"
+
+# Process management
+nix = { version = "0.27", features = ["process"] }
+
+# UUID generation
+uuid = { version = "1.6", features = ["v4", "serde"] }
+
+# Date/time
+chrono = { version = "0.4", features = ["serde"] }
+
+# Directory utilities
+dirs = "5.0"
+
+# Emulation/execution
+wasmtime = "14.0"  # WebAssembly runtime as sandbox
+cranelift = "0.105"
+
+# Testing
+mockall = "0.12"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[[bin]]
+name = "ioss"
+path = "src/bin/main.rs"
+
+[lib]
+name = "ioss_emulator"
+path = "src/lib.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

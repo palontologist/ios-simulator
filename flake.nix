@@ -13,6 +13,15 @@
         iosPlatforms = import ./nix/ios-platforms.nix { inherit pkgs; };
         detoxTools = import ./nix/detox-tools.nix { inherit pkgs; };
         iosDevTools = import ./nix/ios-tools.nix { inherit pkgs; };
+        
+        # iOSS Emulator build
+        iossEmulator = pkgs.rustPlatform.buildRustPackage {
+          pname = "ioss-emulator";
+          version = "0.1.0";
+          src = ./emulator;
+          cargoSha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
+          doCheck = true;
+        };
       in
       {
         devShells.default = pkgs.mkShell {
@@ -103,8 +112,25 @@
           '';
         };
 
+        devShells.emulator = pkgs.mkShell {
+          buildInputs = with pkgs; [
+            cargo
+            rustc
+            rustfmt
+            clippy
+            pkg-config
+            openssl
+          ];
+          shellHook = ''
+            echo "iOSS Emulator Development Environment loaded!"
+            echo "Build: cargo build --release"
+            echo "Test: cargo test"
+            echo "Install: cargo install --path ."
+          '';
+        };
+
         packages = {
-          inherit iosDevTools detoxTools;
+          inherit iosDevTools detoxTools iossEmulator;
           default = iosDevTools;
         };
 
