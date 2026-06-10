@@ -6,8 +6,7 @@ A comprehensive NixOS Flake for iOS app development, providing tools for:
 - **E2E Testing**: Run automated tests with Detox framework
 - **Remote Simulators**: Connect to macOS simulators over SSH
 - **Functional Testing Bridge**: Test app logic without full UI emulation
-
-## Quick Start
+ Quick Start
 
 ```bash
 # Enter default development environment
